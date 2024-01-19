@@ -69,3 +69,13 @@
   align-items: flex-start;
   width: 80%;
 }
+
+.error-message {
+  color: red;
+}
+
+.body {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
