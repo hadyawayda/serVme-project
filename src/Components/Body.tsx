@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { dataProps, formattedData } from "../Interfaces/Interfaces";
 import { DataGrid } from "@mui/x-data-grid";
 import { Box } from "@mui/material";
-import { connect } from "react-redux";
 import { setGlobalName } from "../Actions/nameActions";
 import { useContext } from "react";
 import { NameContext } from "./GlobalNameContext";
+import { useDispatch } from "react-redux";
 
 const columns = [
   { field: "time", headerName: "Time", width: 100 },
@@ -40,10 +40,12 @@ const Body = ({ data, loading, error }: dataProps) => {
   const [validation, setValidation] = useState<string>("");
   const [greetingMessage, setGreeting] = useState<string>("");
   const { setFirstName } = useContext(NameContext);
+  const dispatch = useDispatch();
 
   useEffect(() => formatData(), [data]);
 
-  // This is used to format the data coming from the API from array of column data to arrays of row data
+  // This function is used to format the data coming from the API from array of column data to arrays of row data
+  // It is necessary to be able to display the data correctly inside the DataGrid Component from MUI
   function formatData() {
     const array = [];
 
@@ -76,7 +78,7 @@ const Body = ({ data, loading, error }: dataProps) => {
     }
 
     setGreeting(`Greetings, ${name}! 😊`);
-    setGlobalName(name);
+    dispatch(setGlobalName(name));
     setFirstName(name);
     setName("");
     setValidation("");
@@ -130,12 +132,4 @@ const Body = ({ data, loading, error }: dataProps) => {
   );
 };
 
-const mapStateToProps = (state: any) => ({
-  name: state.name,
-});
-
-const mapDispatchToProps = {
-  setGlobalName,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Body);
+export default Body;
