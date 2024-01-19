@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export interface Data {
   time: Array<string>;
   temperature_2m: Array<number>;
@@ -24,3 +26,8 @@ export interface formattedData {
 //   type: string;
 //   payload: any;
 // }
+
+export interface NameContextType {
+  firstName: string;
+  setFirstName: Dispatch<SetStateAction<string>>;
+}

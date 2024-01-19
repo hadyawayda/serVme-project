@@ -1,9 +1,5 @@
-import { useState, createContext, Dispatch, SetStateAction } from "react";
-
-type NameContextType = {
-  firstName: string;
-  setFirstName: Dispatch<SetStateAction<string>>;
-};
+import { useState, createContext } from "react";
+import { NameContextType } from "../Interfaces/Interfaces";
 
 export const NameContext = createContext<NameContextType>({
   firstName: "",
