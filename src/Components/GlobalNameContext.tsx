@@ -5,9 +5,10 @@ type NameContextType = {
   setFirstName: Dispatch<SetStateAction<string>>;
 };
 
-export const NameContext = createContext<NameContextType | undefined>(
-  undefined
-);
+export const NameContext = createContext<NameContextType>({
+  firstName: "",
+  setFirstName: () => {},
+});
 
 export const NameProvider = ({ children }: { children: React.ReactNode }) => {
   const [firstName, setFirstName] = useState("");

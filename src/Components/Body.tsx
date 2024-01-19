@@ -39,7 +39,7 @@ const Body = ({ data, loading, error }: dataProps) => {
   const [name, setName] = useState<string>("");
   const [validation, setValidation] = useState<string>("");
   const [greetingMessage, setGreeting] = useState<string>("");
-  const { firstName, setFirstName } = useContext(NameContext);
+  const { setFirstName } = useContext(NameContext);
 
   useEffect(() => formatData(), [data]);
 
@@ -75,7 +75,7 @@ const Body = ({ data, loading, error }: dataProps) => {
       return;
     }
 
-    setGreeting(`Welcome ${name}! 😊`);
+    setGreeting(`Greetings, ${name}! 😊`);
     setGlobalName(name);
     setFirstName(name);
     setName("");
@@ -90,7 +90,6 @@ const Body = ({ data, loading, error }: dataProps) => {
           <input
             type="text"
             placeholder="Enter Your First Name"
-            value={name}
             onChange={(e) => setName(e.target.value)}
           />
         </div>

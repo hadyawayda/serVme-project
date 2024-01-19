@@ -2,8 +2,8 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home";
 import About from "./Pages/About";
-import { Provider } from "react-redux";
 import store from "./Store/store.js";
+import { Provider } from "react-redux";
 import { NameProvider } from "./Components/GlobalNameContext.jsx";
 
 function App() {
