@@ -4,16 +4,19 @@ import Home from "./Pages/Home";
 import About from "./Pages/About";
 import { Provider } from "react-redux";
 import store from "./Store/store.js";
+import { NameProvider } from "./Components/GlobalNameContext.jsx";
 
 function App() {
   return (
     <Provider store={store}>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
-      </Router>
+      <NameProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
+        </Router>
+      </NameProvider>
     </Provider>
   );
 }

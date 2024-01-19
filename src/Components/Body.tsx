@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import { dataProps, formattedData } from "../Interfaces/Interfaces";
 import { DataGrid } from "@mui/x-data-grid";
 import { Box } from "@mui/material";
+import { connect } from "react-redux";
+import { setGlobalName } from "../Actions/nameActions";
+import { useContext } from "react";
+import { NameContext } from "./GlobalNameContext";
 
 const columns = [
   { field: "time", headerName: "Time", width: 100 },
@@ -35,7 +39,7 @@ const Body = ({ data, loading, error }: dataProps) => {
   const [name, setName] = useState<string>("");
   const [validation, setValidation] = useState<string>("");
   const [greetingMessage, setGreeting] = useState<string>("");
-  const [redux, setRedux] = useState<string>("");
+  const { firstName, setFirstName } = useContext(NameContext);
 
   useEffect(() => formatData(), [data]);
 
@@ -72,12 +76,11 @@ const Body = ({ data, loading, error }: dataProps) => {
     }
 
     setGreeting(`Welcome ${name}! 😊`);
-    setRedux(name);
+    setGlobalName(name);
+    setFirstName(name);
     setName("");
     setValidation("");
   }
-
-  useEffect(() => console.log(redux), [redux]);
 
   return (
     <div className="body">
@@ -128,4 +131,12 @@ const Body = ({ data, loading, error }: dataProps) => {
   );
 };
 
-export default Body;
+const mapStateToProps = (state: any) => ({
+  name: state.name,
+});
+
+const mapDispatchToProps = {
+  setGlobalName,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Body);
