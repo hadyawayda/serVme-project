@@ -1,0 +1,1 @@
+This is a project made with React and Typescript. To replicate the project locally, clone the repo then run npm install and npm run dev to start a local development server.
