@@ -51,8 +51,21 @@ const Body = ({ data, loading, error }: dataProps) => {
     setData(array);
   }
 
+  function handleSubmit() {}
+
   return (
     <div className="body">
+      <form className="form" onSubmit={handleSubmit}>
+        <div>
+          First Name:
+          <input placeholder="Enter Your First Name" />
+        </div>
+        <div>
+          Last Name:
+          <input placeholder="Enter Your Last Name" />
+        </div>
+        <button type="submit">Submit</button>
+      </form>
       {error ? (
         <div className="error-message">Error: {error.message}</div>
       ) : (
