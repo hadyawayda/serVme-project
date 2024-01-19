@@ -86,4 +86,27 @@
 .form {
   display: flex;
   flex-direction: column;
+  height: 150px;
+  justify-content: space-between;
+}
+
+.firstname {
+  display: flex;
+  width: 400px;
+  justify-content: space-between;
+}
+
+input::placeholder {
+  color: #999;
+}
+
+.validation {
+  color: red;
+  width: 100%;
+  font-size: 16px;
+}
+
+.greeting {
+  color: Green;
+  width: 100%;
 }

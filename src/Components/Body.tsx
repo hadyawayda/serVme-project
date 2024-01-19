@@ -32,9 +32,14 @@ const columns = [
 
 const Body = ({ data, loading, error }: dataProps) => {
   const [Data, setData] = useState<formattedData[]>([]);
+  const [name, setName] = useState<string>("");
+  const [validation, setValidation] = useState<string>("");
+  const [greetingMessage, setGreeting] = useState<string>("");
+  const [redux, setRedux] = useState<string>("");
 
   useEffect(() => formatData(), [data]);
 
+  // This is used to format the data coming from the API from array of column data to arrays of row data
   function formatData() {
     const array = [];
 
@@ -51,19 +56,43 @@ const Body = ({ data, loading, error }: dataProps) => {
     setData(array);
   }
 
-  function handleSubmit() {}
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    if (!name) {
+      setValidation("Please enter a name");
+      return;
+    }
+
+    const regex = /[^a-zA-Z]/;
+
+    if (regex.test(name)) {
+      setValidation("Name can only contain Alphabetical Characters");
+      return;
+    }
+
+    setGreeting(`Welcome ${name}! 😊`);
+    setRedux(name);
+    setName("");
+    setValidation("");
+  }
+
+  useEffect(() => console.log(redux), [redux]);
 
   return (
     <div className="body">
       <form className="form" onSubmit={handleSubmit}>
-        <div>
-          First Name:
-          <input placeholder="Enter Your First Name" />
+        <div className="firstname">
+          <label htmlFor="first name">First Name: </label>
+          <input
+            type="text"
+            placeholder="Enter Your First Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
         </div>
-        <div>
-          Last Name:
-          <input placeholder="Enter Your Last Name" />
-        </div>
+        <div className="greeting">{greetingMessage}</div>
+        <div className="validation">{validation}</div>
         <button type="submit">Submit</button>
       </form>
       {error ? (
@@ -79,6 +108,8 @@ const Body = ({ data, loading, error }: dataProps) => {
                   rows={Data}
                   columns={columns}
                   getRowId={(row) => row.time}
+                  disableRowSelectionOnClick
+                  // Uncomment the following commented lines to enable pagination
                   // initialState={{
                   //   pagination: {
                   //     paginationModel: {
@@ -87,8 +118,6 @@ const Body = ({ data, loading, error }: dataProps) => {
                   //   },
                   // }}
                   // pageSizeOptions={[5]}
-                  // checkboxSelection
-                  // disableRowSelectionOnClick
                 />
               </Box>
             </div>

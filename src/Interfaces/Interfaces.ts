@@ -19,3 +19,8 @@ export interface formattedData {
   rain: string;
   windSpeed: number;
 }
+
+export interface Action {
+  type: string;
+  payload: any;
+}
