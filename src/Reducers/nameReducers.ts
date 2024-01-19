@@ -1,10 +1,10 @@
-import { Action } from "redux";
+// import { Action } from "redux";
 
 const initialState = {
   name: "",
 };
 
-const nameReducer = (state = initialState, action: Action) => {
+const nameReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case "SET_NAME":
       return { ...state, name: action.payload };

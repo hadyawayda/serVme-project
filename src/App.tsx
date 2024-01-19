@@ -7,14 +7,14 @@ import store from "./Store/store.js";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Provider store={store}>
+    <Provider store={store}>
+      <Router>
+        <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-        </Provider>
-      </Routes>
-    </Router>
+        </Routes>
+      </Router>
+    </Provider>
   );
 }
 
