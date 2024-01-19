@@ -15,9 +15,13 @@ const Navbar = () => {
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
       </div>
-      {name && <div className="welcome">Welcome {name}</div>}
+      {name ? (
+        <div className="welcome">Welcome {name}</div>
+      ) : (
+        <div className="welcome">Welcome</div>
+      )}
       {/** Uncomment next line to use Context API */}
-      {/* {firstName && <div className="welcome">Welcome {firstName}</div>} */}{" "}
+      {/* {firstName ? ( <div className="welcome">Welcome {firstName}</div> ) : ( <div className="welcome">Welcome</div> )} */}
     </div>
   );
 };
